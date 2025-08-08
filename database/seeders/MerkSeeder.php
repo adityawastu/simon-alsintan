@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Merk;
+use App\Models\Admin\Merk;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 

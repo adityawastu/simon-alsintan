@@ -45,14 +45,16 @@
                      <option selected disabled>Pilih Sensor</option>
                      @foreach ($sensors as $sensor)
                         <option value="{{ $sensor->sensor_id }}"
-                           {{ old('sensor_id') == $sensor->sensor_id ? 'selected' : '' }}>{{ $sensor->sensor_id }}
+                           {{ old('sensor_id') == $sensor->sensor_id ? 'selected' : '' }}>
+                           {{ $sensor->sensor_id }}
                         </option>
                      @endforeach
                   </select>
                </div>
                {{-- jenis --}}
                <div class="mb-2">
-                  <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Kategori Alsintan</label>
+                  <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Kategori
+                     Alsintan</label>
                   <select id="category" name="category_id"
                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                      <option selected="">Pilih jenis Kategori</option>
@@ -72,14 +74,6 @@
                         <option value="{{ $merk->id }}">{{ $merk->name }}</option>
                      @endforeach
                   </select>
-               </div>
-
-               {{-- stock --}}
-               <div class="mb-2">
-                  <label for="stock" class="block mb-2 text-sm font-medium text-gray-900">Stock</label>
-                  <input type="number" name="stock" id="stock"
-                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                     placeholder="Masukkan jumlah alat" required="">
                </div>
 
                {{-- deskripsi --}}

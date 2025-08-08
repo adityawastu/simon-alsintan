@@ -13,10 +13,17 @@ class UserSeeder extends Seeder
      */
  public function run(): void
 {
-    \App\Models\User::create([
-        'name' => 'Admin',
-        'email' => 'admin@example.com',
-        'password' => Hash::make('password'),
-    ]);
+    \App\Models\Admin\User::create([
+            'name'          => 'Admin Utama',
+            'email'         => 'admin@example.com',
+            'password'      => Hash::make('admin@example.com'),
+            'nip'           => '1987654321',
+            'no_hp'         => '081234567890',
+            'jabatan'       => 'Administrator',
+            'unit_kerja'    => 'Teknologi Informasi',
+            'wilayah_kerja' => 'Cianjur',
+            'role'          => 'admin',
+            'image'         => 'default-avatar.png',
+        ]);
 }
 }

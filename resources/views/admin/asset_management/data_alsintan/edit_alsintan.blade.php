@@ -72,13 +72,6 @@
                   </select>
                </div>
 
-               {{-- stock --}}
-               <div class="mb-2">
-                  <label for="stock" class="block mb-2 text-sm font-medium text-gray-900">Stock</label>
-                  <input type="number" name="stock" id="stock" value="{{ old('stock', $alsintan->stock) }}"
-                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                     placeholder="Masukkan jumlah alat" required>
-               </div>
 
                {{-- deskripsi --}}
                <div class="mb-2">

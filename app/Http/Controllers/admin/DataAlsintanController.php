@@ -58,7 +58,6 @@ class DataAlsintanController extends Controller
       'sensor_id'   => 'nullable|string|exists:sensor_data,sensor_id',
       'category_id' => 'nullable|integer|exists:categories,id',
       'merk_id'     => 'nullable|integer|exists:merks,id',
-      'stock'       => 'required|integer|min:0',
       'description' => 'nullable|string',
       'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
     ]);
@@ -73,7 +72,6 @@ class DataAlsintanController extends Controller
       'sensor_id'   => $validated['sensor_id'] ?? null,
       'category_id' => $validated['category_id'] ?? null,
       'merk_id'     => $validated['merk_id'] ?? null,
-      'stock'       => $validated['stock'],
       'description' => $validated['description'] ?? null,
       'image'       => $imagePath,
     ]);
@@ -140,12 +138,6 @@ class DataAlsintanController extends Controller
     $alsintan = DataAlsintan::findOrFail($id);
     $categories = Category::all();
     $merks = Merk::all();
-    // $sensors = SensorData::select('*')
-    //   ->whereIn('id', function ($query) {
-    //     $query->selectRaw('MAX(id)')
-    //       ->from('sensor_data')
-    //       ->groupBy('sensor_id');
-    //   })->get();
 
     $sensors = SensorData::select('sensor_id')->distinct()->get();
 
@@ -160,7 +152,7 @@ class DataAlsintanController extends Controller
       'sensor_id' => 'required|string|exists:sensor_data,sensor_id',
       'category_id' => 'nullable|exists:categories,id',
       'merk_id' => 'nullable|exists:merks,id',
-      'stock' => 'required|integer|min:0',
+
       'description' => 'nullable|string',
       'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
     ]);
@@ -171,7 +163,6 @@ class DataAlsintanController extends Controller
     $alsintan->sensor_id = $request->sensor_id;
     $alsintan->category_id = $request->category_id;
     $alsintan->merk_id = $request->merk_id;
-    $alsintan->stock = $request->stock;
     $alsintan->description = $request->description;
 
     // Jika ada upload gambar baru
