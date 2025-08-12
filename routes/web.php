@@ -3,9 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 //admin controller
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\BerandaController as AdminBerandaController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+//use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\BerandaController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PetaLokasiController;
 use App\Http\Controllers\Admin\DataAlsintanController;
 use App\Http\Controllers\Admin\ServiceHistoryController;
@@ -34,9 +34,9 @@ Route::middleware(['auth'])->group(function () {
   //admin login
   Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function () {
     //beranda
-    Route::get('/beranda', [AdminBerandaController::class, 'index'])->name('beranda');
+    Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
     //dashboard 
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     //peta-lokasi
     Route::get('/index-peta-lokasi', [PetaLokasiController::class, 'index'])->name('index.peta.lokasi');
     // Route::get('/peta-lokasi-alsintan', [PetaLokasiController::class, 'lokasiAlsintan'])->name('peta.lokasi.alsintan');
