@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 //admin controller
 //use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\BerandaController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PetaLokasiController;
@@ -33,6 +34,8 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
   //admin login
   Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function () {
+    //profle
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     //beranda
     Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
     //dashboard 

@@ -42,6 +42,7 @@
       <!-- End Sidebar -->
 
       <main class="p-4 md:ml-64 h-auto pt-20">
+         <x-breadcrumb />
          <div class="rounded-2xl shadow-sm h-auto bg-white dark:bg-gray-800 p-6">
             {{ $slot }}
          </div>
