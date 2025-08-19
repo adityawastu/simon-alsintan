@@ -28,7 +28,7 @@ class ServiceHistoryController extends Controller
 
         ServiceHistory::create($validated);
 
-        return redirect()->route('alsintan.show', $validated['data_alsintan_id'])
+        return redirect()->route('admin.alsintan.show', $validated['data_alsintan_id'])
             ->with('success', 'Riwayat servis berhasil ditambahkan.');
     }
 
@@ -39,7 +39,7 @@ class ServiceHistoryController extends Controller
 
         $service->delete();
 
-        return redirect()->route('alsintan.show', $alsintan_id)
+        return redirect()->route('admin.alsintan.show', $alsintan_id)
             ->with('success', 'Riwayat servis berhasil dihapus.');
     }
 }

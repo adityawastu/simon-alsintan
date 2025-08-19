@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -13,6 +14,7 @@ class DataAlsintan extends Model
 
     protected $fillable = [
         'name',
+        // 'slug',
         'category_id',
         'merk_id',
         'stock',
@@ -40,4 +42,16 @@ class DataAlsintan extends Model
     {
         return $this->belongsTo(SensorData::class, 'sensor_id', 'sensor_id');
     }
+
+    // protected static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::saving(function ($model) {
+    //         // Kalau slug kosong atau name berubah, buat slug baru
+    //         if (empty($model->slug) || $model->isDirty('name')) {
+    //             $model->slug = Str::slug($model->name);
+    //         }
+    //     });
+    // }
 }

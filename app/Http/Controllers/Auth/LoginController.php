@@ -36,9 +36,9 @@ class LoginController extends Controller
 
             // Redirect sesuai role
             return match ($role) {
-                'admin' => redirect()->route('admin.dashboard'),
-                'upja'  => redirect()->route('upja.dashboard'),
-                'farmer'  => redirect()->route('farmer.dashboard'),
+                'admin' => redirect()->route('admin.beranda'),
+                'upja'  => redirect()->route('upja.beranda'),
+                'farmer'  => redirect()->route('farmer.beranda'),
                 default => redirect('/'), // fallback
             };
         }

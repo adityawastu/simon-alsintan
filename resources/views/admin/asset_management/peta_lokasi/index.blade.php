@@ -4,7 +4,7 @@
    <div class="bg-white dark:bg-gray-800 relative sm:rounded-lg overflow-hidden">
       <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
          <div class="w-full md:w-1/2">
-            <h1 class="text-2xl font-bold mb-2 text-green-700 dark:text-gray-200">Peta lokasi alat mesin dan pertanian
+            <h1 class="text-2xl font-bold mb-2 text-green-700 dark:text-gray-200">Monitoring alat dan mesin pertanian
             </h1>
          </div>
 
@@ -21,6 +21,7 @@
             </thead>
             <tbody>
                @forelse ($activeAlsintans as $alsintan)
+                  i
                   <tr>
                      <th scope="row" class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{ $alsintan->name }}

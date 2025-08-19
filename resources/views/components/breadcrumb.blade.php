@@ -6,10 +6,10 @@
    <ol class="inline-flex items-center space-x-1 md:space-x-3">
       {{-- Link Home --}}
       <li class="inline-flex items-center">
-         <a href="{{ url('/') }}"
-            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+         <span href="{{ url('/') }}"
+            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-green-600">
             Home
-         </a>
+         </span>
       </li>
 
       {{-- Loop segment URL --}}
@@ -28,10 +28,10 @@
 
             {{-- Link untuk segment kecuali terakhir --}}
             @if ($index + 1 < count($segments))
-               <a href="{{ url(implode('/', array_slice($segments, 0, $index + 1))) }}"
-                  class="text-sm font-medium text-gray-700 hover:text-blue-600">
+               <span href="{{ url(implode('/', array_slice($segments, 0, $index + 1))) }}"
+                  class="text-sm font-medium text-gray-700 hover:text-green-600">
                   {{ $label }}
-               </a>
+               </span>
             @else
                <span class="text-sm font-medium text-gray-500">{{ $label }}</span>
             @endif

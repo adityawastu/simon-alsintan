@@ -66,17 +66,18 @@
                      class="w-6 h-6 transition duration-75
                     {{ Route::is('admin.beranda')
                         ? 'text-white'
-                        : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
+                        : 'text-black dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
                      fill="currentColor" viewBox="0 0 20 20">
                      <path fill-rule="evenodd" d="M10.707 1.707a1 1 0 00-1.414 0L2 9h2v7a1 1 0 001 1h3a1
                      1 0 001-1v-4h2v4a1 1 0 001 1h3a1
                      1 0 001-1V9h2L10.707 1.707z" clip-rule="evenodd" />
                   </svg>
-
                   {{-- Label --}}
                   <span class="ml-2">Beranda</span>
                </a>
             </li>
+
+
 
 
             <li>
@@ -84,13 +85,13 @@
                   class="flex items-center p-2 text-base font-normal rounded-lg transition duration-150 ease-in-out
               {{ Route::is('admin.dashboard')
                   ? 'bg-green-500 text-white'
-                  : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                  : 'text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
 
                   <svg aria-hidden="true"
                      class="w-6 h-6 transition duration-75
                     {{ Route::is('admin.dashboard')
                         ? 'text-white'
-                        : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
+                        : 'text-black dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
                      fill="currentColor" viewBox="0 0 20 20">
                      <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
                      <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
@@ -101,12 +102,13 @@
             </li>
 
 
+            {{-- asset management --}}
             <li>
                <button type="button"
                   class="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-pages" data-collapse-toggle="dropdown-pages">
                   <svg aria-hidden="true"
-                     class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                     class="flex-shrink-0 w-6 h-6 text-black transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                      fill="currentColor" viewBox="0 0 20 20">
                      <path fill-rule="evenodd"
                         d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
@@ -119,29 +121,39 @@
                         clip-rule="evenodd"></path>
                   </svg>
                </button>
-               <ul id="dropdown-pages" class="hidden py-2 space-y-2">
+               <ul id="dropdown-pages"
+                  class="{{ request()->routeIs('admin.data.alsintan') ||
+                  request()->routeIs('admin.index.peta.lokasi') ||
+                  request()->routeIs('admin.monitoring.aktivitas')
+                      ? 'py-2 space-y-2'
+                      : 'hidden py-2 space-y-2' }}">
+
+                  {{-- Data Alsintan --}}
                   <li>
-                     <a href="{{ route('admin.index_alsintan') }}"
-                        class="flex items-center p-2 pl-11 w-full text-base font-sm text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                     <a href="{{ route('admin.data.alsintan') }}"
+                        class="flex items-center p-2 pl-11 w-full text-base rounded-lg transition duration-75 group
+                  {{ request()->routeIs('admin.data.alsintan')
+                      ? 'bg-green-500 text-white'
+                      : 'text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700' }}">
                         Data Alsintan
                      </a>
                   </li>
+
+                  {{-- Peta & Lokasi --}}
                   <li>
                      <a href="{{ route('admin.index.peta.lokasi') }}"
-                        class="flex items-center p-2 pl-11 w-full text-base font-sm text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                        Peta & Lokasi
-                     </a>
-                  </li>
-                  <li>
-                     <a href="{{ route('admin.monitoring.aktivitas') }}"
-                        class="flex items-center p-2 pl-11 w-full text-base font-sm text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        class="flex items-center p-2 pl-11 w-full text-base rounded-lg transition duration-75 group
+                  {{ request()->routeIs('admin.index.peta.lokasi')
+                      ? 'bg-green-500 text-white'
+                      : 'text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700' }}">
                         Monitoring Aktivitas
                      </a>
                   </li>
                </ul>
             </li>
 
-            <li>
+            {{-- user management --}}
+            {{-- <li>
                <a href=""
                   class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <svg class="w-6 h-6 text-gray-800 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -151,20 +163,48 @@
                   </svg>
                   <span class="ml-2">User Management</span>
                </a>
-            </li>
+            </li> --}}
+
+            {{-- upja management --}}
             <li>
-               <a href=""
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-800 dark:text-white"
-                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                     stroke-linejoin="round">
-                     <path d="M4 10V4h2l4 4h5l2 4" />
-                     <circle cx="7" cy="15" r="3" />
-                     <circle cx="17" cy="15" r="3" />
-                     <path d="M7 15h10" />
+               <button type="button"
+                  class="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  aria-controls="dropdown-upja" data-collapse-toggle="dropdown-upja">
+
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24">
+                     <path fill="currentColor"
+                        d="M12 23C5.925 23 1 18.075 1 12S5.925 1 12 1s11 4.925 11 11s-4.925 11-11 11m-.374-8.547l4.065 4.066l2.829-2.829l-4.066-4.065a4.5 4.5 0 0 0-6.05-5.57l-.369.16l.157.81l2.088 2.087l-1.166 1.166L7.026 8.19l-.81-.156l-.159.368a4.501 4.501 0 0 0 5.569 6.051" />
                   </svg>
-                  <span class="ml-2">Upja Management</span>
-               </a>
+                  <span class="flex-1 ml-2 text-left whitespace-nowrap text-base font-normal">Upja Management</span>
+                  <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                     <path fill-rule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+                  </svg>
+               </button>
+               <ul id="dropdown-upja"
+                  class="{{ request()->routeIs('admin.upja.index') ? 'py-2 space-y-2' : 'hidden py-2 space-y-2' }}">
+                  {{-- Data Alsintan --}}
+                  <li>
+                     <a href="{{ route('admin.upja.index') }}"
+                        class="flex items-center p-2 pl-11 w-full text-base rounded-lg transition duration-75 group
+                  {{ request()->routeIs('admin.upja.index')
+                      ? 'bg-green-500 text-white'
+                      : 'text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700' }}">
+                        Data Upja
+                     </a>
+                  </li>
+                  {{-- <li>
+                     <a href=""
+                        class="flex items-center p-2 pl-11 w-full text-base rounded-lg transition duration-75 group
+                  {{ request()->routeIs('admin.upja.index')
+                      ? 'bg-green-500 text-white'
+                      : 'text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700' }}">
+                        Data Alsintan Upja
+                     </a>
+                  </li> --}}
+
+               </ul>
             </li>
          </ul>
       @elseif ($user && $user->role === 'upja')
@@ -220,6 +260,7 @@
                   </svg>
                   <span class="ml-2">Beranda</span>
                </a>
+
             </li>
 
             <li>
@@ -265,19 +306,19 @@
                <ul id="dropdown-pages" class="hidden py-2 space-y-2">
                   <li>
                      <a href="{{ route('admin.index_alsintan') }}"
-                        class="flex items-center p-2 pl-11 w-full text-base font-sm text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        class="flex items-center p-2 pl-11 w-full text-base text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         Data Alsintan
                      </a>
                   </li>
                   <li>
                      <a href="{{ route('admin.index.peta.lokasi') }}"
-                        class="flex items-center p-2 pl-11 w-full text-base font-sm text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        class="flex items-center p-2 pl-11 w-full text-base text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         Peta & Lokasi
                      </a>
                   </li>
                   <li>
                      <a href="{{ route('admin.monitoring.aktivitas') }}"
-                        class="flex items-center p-2 pl-11 w-full text-base font-sm text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        class="flex items-center p-2 pl-11 w-full text-base text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         Monitoring Aktivitas
                      </a>
                   </li>
@@ -385,19 +426,19 @@
                <ul id="dropdown-pages" class="hidden py-2 space-y-2">
                   <li>
                      <a href="{{ route('admin.index_alsintan') }}"
-                        class="flex items-center p-2 pl-11 w-full text-base font-sm text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        class="flex items-center p-2 pl-11 w-full text-base text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         Data Alsintan
                      </a>
                   </li>
                   <li>
                      <a href="{{ route('admin.index.peta.lokasi') }}"
-                        class="flex items-center p-2 pl-11 w-full text-base font-sm text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        class="flex items-center p-2 pl-11 w-full text-base text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         Peta & Lokasi
                      </a>
                   </li>
                   <li>
                      <a href="{{ route('admin.monitoring.aktivitas') }}"
-                        class="flex items-center p-2 pl-11 w-full text-base font-sm text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        class="flex items-center p-2 pl-11 w-full text-base text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         Monitoring Aktivitas
                      </a>
                   </li>

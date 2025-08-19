@@ -15,7 +15,8 @@
             </h3>
          </div>
 
-         <form action="{{ route('alsintan.update', $alsintan->id) }}" method="POST" enctype="multipart/form-data">
+         <form action="{{ route('admin.alsintan.update', $alsintan->id) }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="gap-6 mb-4 sm:grid-cols-2">

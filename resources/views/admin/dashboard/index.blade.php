@@ -12,13 +12,30 @@
             <p class="text-sm text-gray-500 mb-1">Mesin yang sedang berjalan</p>
             <p class="text-3xl font-bold text-gray-800">{{ $runningAlsintan }}</p>
          </div>
+         <div class="bg-white p-6 rounded-lg shadow border-l-4 border-green-600">
+            <p class="text-sm text-gray-500 mb-1">Total UPJA</p>
+            <p class="text-3xl font-bold text-gray-800">{{ $runningAlsintan }}</p>
+         </div>
       </div>
 
 
       {{-- Grafik --}}
-      <div class="bg-white p-6 rounded-lg shadow">
-         <h2 class="text-lg font-semibold mb-4 text-gray-700">Jumlah Alat dan Mesin Pertanian per Kategori</h2>
-         <canvas id="alsintanChart" width="400" height="200"></canvas>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+         <!-- Grafik Kiri -->
+         <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-lg font-semibold mb-4 text-gray-700">
+               Jumlah alat mesin dan pertanian
+            </h2>
+            <canvas id="alsintanChart" width="400" height="200"></canvas>
+         </div>
+
+         <!-- Grafik Kanan -->
+         <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-lg font-semibold mb-4 text-gray-700">
+               Jumlah Upja provinsi Jawa Barat
+            </h2>
+            <canvas id="alsintanChart2" width="400" height="200"></canvas>
+         </div>
       </div>
    </div>
 

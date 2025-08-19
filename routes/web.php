@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\BerandaController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PetaLokasiController;
 use App\Http\Controllers\Admin\DataAlsintanController;
+use App\Http\Controllers\Admin\DataUpjaController;
 use App\Http\Controllers\Admin\ServiceHistoryController;
 use App\Http\Controllers\Admin\MonitoringAlsintanController;
 
@@ -46,14 +47,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/monitoring/{sensor_id}', [PetaLokasiController::class, 'show'])->name('peta.lokasi.alsintan');
     //monitoring aktivitas
     Route::get('/monitoring-alsintan', [MonitoringAlsintanController::class, 'index'])->name('monitoring.aktivitas');
+
     // Data_alsintan
-    Route::get('/data-alsintan', [DataAlsintanController::class, 'index'])->name('index_alsintan');
-    Route::get('/create-alsintan', [DataAlsintanController::class, 'create'])->name('create_alsintan');
-    Route::post('/alsintan/store', [DataAlsintanController::class, 'store'])->name('dataalsintan.store');
+    Route::get('/data-alsintan', [DataAlsintanController::class, 'index'])->name('data.alsintan');
+    Route::get('/tambah-alsintan', [DataAlsintanController::class, 'create'])->name('create.alsintan');
+    Route::post('/alsintan/store', [DataAlsintanController::class, 'store'])->name('alsintan.store');
     Route::get('/alsintan/show/{id}', [DataAlsintanController::class, 'show'])->name('alsintan.show');
     Route::delete('/alsintan/{id}', [DataAlsintanController::class, 'destroy'])->name('alsintan.destroy');
     Route::get('/alsintan/{id}/edit', [DataAlsintanController::class, 'edit'])->name('alsintan.edit');
     Route::put('/alsintan/{id}', [DataAlsintanController::class, 'update'])->name('alsintan.update');
+
+    // data Upja
+    Route::get('/data-upja', [DataUpjaController::class, 'index'])->name('upja.index');
+
     //service history 
     Route::get('/alsintan/{id}/service-history/create', [ServiceHistoryController::class, 'create'])->name('service.create');
     Route::post('/service-history/store', [ServiceHistoryController::class, 'store'])->name('service.store');

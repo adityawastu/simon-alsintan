@@ -1,11 +1,11 @@
 <x-layout>
-   <div class="bg-white dark:bg-gray-800 relative sm:rounded-lg overflow-hidden">
+   <div class="bg-white dark:bg-gray-800 relative sm:rounded-lg overflow-hidden p-2">
       <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
          <div class="w-full flex items-center justify-between mb-4">
             <h1 class="text-2xl font-bold text-green-700 dark:text-gray-200">
                Data Alat mesin dan pertanian
             </h1>
-            <a href="{{ route('admin.create_alsintan') }}"
+            <a href="{{ route('admin.create.alsintan') }}"
                class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
                Tambah Data
             </a>
@@ -51,11 +51,11 @@
                      </td>
                      <td class="px-4 py-2">
                         <div class="flex gap-2">
-                           <a href="{{ route('alsintan.show', $item->id) }}"
+                           <a href="{{ route('admin.alsintan.show', $item->id) }}"
                               class="inline-block px-3 py-1 text-sm font-semibold text-white bg-green-600 rounded hover:bg-green-700">
                               View
                            </a>
-                           <form action="{{ route('alsintan.destroy', $item->id) }}" method="POST"
+                           <form action="{{ route('admin.alsintan.destroy', $item->id) }}" method="POST"
                               onsubmit="return confirm('Yakin ingin menghapus data ini?');">
                               @csrf
                               @method('DELETE')
@@ -73,13 +73,11 @@
          </table>
       </div>
       <nav>
-
          {{-- Tombol halaman --}}
          <div>
             {{ $alsintans->links() }}
          </div>
-   </div>
-   </nav>
+      </nav>
    </div>
 
 </x-layout>

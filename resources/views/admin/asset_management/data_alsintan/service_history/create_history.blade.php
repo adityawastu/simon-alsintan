@@ -7,7 +7,7 @@
       </svg>
       Kembali
    </a>
-   <form action="{{ route('service.store') }}" method="POST">
+   <form action="{{ route('admin.service.store') }}" method="POST">
       @csrf
       <input type="hidden" name="data_alsintan_id" value="{{ $alsintan->id }}">
 

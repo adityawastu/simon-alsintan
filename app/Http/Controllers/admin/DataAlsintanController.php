@@ -76,13 +76,18 @@ class DataAlsintanController extends Controller
       'image'       => $imagePath,
     ]);
 
-    return redirect()->route('index_alsintan')->with('success', 'Data berhasil ditambahkan!');
+    return redirect()->route('admin.data.alsintan')->with('success', 'Data berhasil ditambahkan!');
   }
 
   public function show($id)
   {
     $alsintan = DataAlsintan::with(['category', 'merk', 'serviceHistories'])->findOrFail($id);
-
+    $sensors = SensorData::select('*')
+      ->whereIn('id', function ($query) {
+        $query->selectRaw('MAX(id)')
+          ->from('sensor_data')
+          ->groupBy('sensor_id');
+      })->get();
     // Ambil data sensor terbaru berdasarkan sensor_id
     $sensor_id = $alsintan->sensor_id;
 
@@ -116,6 +121,7 @@ class DataAlsintanController extends Controller
 
     return view('admin.asset_management.data_alsintan.show_alsintan', compact(
       'alsintan',
+      'sensors',
       'latestData',
       'gpsData',
       'sensorData',
@@ -130,7 +136,7 @@ class DataAlsintanController extends Controller
     $alsintan = DataAlsintan::findOrFail($id);
     $alsintan->delete();
 
-    return redirect()->route('index_alsintan')->with('success', 'Data berhasil dihapus.');
+    return redirect()->route('admin.data.alsintan')->with('success', 'Data berhasil dihapus.');
   }
 
   public function edit($id)
