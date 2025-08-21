@@ -23,9 +23,9 @@
                <!-- Keterangan di kanan -->
                <div class="flex-grow">
                   <div class="mb-4">
-                     <h3 class="text-2xl font-semibold text-gray-900">
+                     {{-- <h3 class="text-2xl font-semibold text-gray-900">
                         {{ ucwords($alsintan->name) }}
-                     </h3>
+                     </h3> --}}
                   </div>
                   <dl>
                      <dt class="mb-2 font-semibold leading-none text-gray-900">Deskripsi</dt>
