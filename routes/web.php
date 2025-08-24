@@ -21,6 +21,11 @@ use App\Http\Controllers\Upja\DashboardController as UpjaDashboardController;
 
 //farmer controller
 use App\Http\Controllers\Farmer\BerandaController as FarmerBerandaController;
+use App\Http\Controllers\Farmer\DataAlsintanController as FarmerDataAlsintanController;
+// use App\Http\Controllers\Farmer\SewaAlsintanController;
+use App\Http\Controllers\Farmer\AjukanSewaController;
+use App\Http\Controllers\Farmer\StatusPengajuanController;
+use App\Http\Controllers\Farmer\RiwayatPenyewaanController;
 
 //auth
 Route::get('/', function () {
@@ -69,6 +74,7 @@ Route::middleware(['auth'])->group(function () {
       Route::post('/service-history/store', [ServiceHistoryController::class, 'store'])->name('service.store');
       Route::get('/service-history/{id}/edit', [ServiceHistoryController::class, 'edit'])->name('service.edit');
       Route::delete('/service-history/{id}', [ServiceHistoryController::class, 'destroy'])->name('service.destroy');
+
       //user
       // Route::get('/profile-user', [UserController::class, 'show'])->name('user.show');
       // Route::get('/index-user', [UserController::class, 'index'])->name('user.index');
@@ -92,5 +98,15 @@ Route::middleware(['auth'])->group(function () {
     ->middleware('role:farmer')
     ->group(function () {
       Route::get('/beranda', [FarmerBerandaController::class, 'index'])->name('beranda');
+      // Route::get('/ajukan-sewa-alsintan', [SewaAlsintanController::class, 'index'])->name('sewaalsintan.index');
+
+      //data alsintan
+      Route::get('/data-alsintan', [FarmerDataAlsintanController::class, 'index'])->name('dataalsintan.index');
+      //ajukan sewa
+      Route::get('/ajukan-sewa', [AjukanSewaController::class, 'index'])->name('ajukansewa.index');
+      //status pengajuan
+      Route::get('/status-pengajuan', [StatusPengajuanController::class, 'index'])->name('statuspengajuan.index');
+      //riwayat penyewaan
+      Route::get('/riwayat-penyewaan', [RiwayatPenyewaanController::class, 'index'])->name('riwayatpenyewaan.index');
     });
 });
