@@ -7,7 +7,7 @@
         </h1>
         <a href="{{ route('admin.create.alsintan') }}"
           class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
-          Tambah Data
+          Tambah Alsintan
         </a>
       </div>
     </div>
@@ -18,11 +18,12 @@
             <th scope="col" class="px-4 py-2">Nama</th>
             <th scope="col" class="px-4 py-2">Kategori</th>
             <th scope="col" class="px-4 py-2">Merk</th>
-            <th scope="col" class="px-4 py-2">Status</th>
+            <th scope="col" class="px-4 py-2">Status Sensor</th>
+            <th scope="col" class="px-4 py-2">Status Alat</th>
             <th scope="col" class="px-4 py-2">Aksi</th> <!-- Kolom baru untuk tombol -->
           </tr>
         </thead>
-        <tbody>
+        <tbody">
           @foreach ($alsintans as $item)
             <tr>
               <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -36,19 +37,43 @@
               </td>
 
               <td class="px-4 py-2">
-                @if ($item->status === 'ON')
-                  <div class="text-green-600 font-semibold">Mesin Aktif</div>
+                @if (empty($item->sensor_id))
+                  <div class="text-yellow-600 font-semibold">Sensor Tidak Terpasang</div>
                 @else
-                  <div class="text-red-600 font-semibold">Mesin Tidak Aktif</div>
-                @endif
+                  @if ($item->status === 'ON')
+                    <div class="text-green-600 font-semibold">Mesin Aktif</div>
+                  @else
+                    <div class="text-red-600 font-semibold">Mesin Tidak Aktif</div>
+                  @endif
 
-                @if ($item->lastTime)
-                  <div class="text-gray-500 text-sm mt-1">
-                    Terakhir data diterima:
-                    {{ \Carbon\Carbon::parse($item->lastTime)->diffForHumans() }}
-                  </div>
+                  @if ($item->lastTime)
+                    <div class="text-gray-500 text-sm mt-1">
+                      Terakhir data diterima:
+                      {{ \Carbon\Carbon::parse($item->lastTime)->diffForHumans() }}
+                    </div>
+                  @endif
                 @endif
               </td>
+
+              <td class="px-4 py-2">
+                @if (empty($item->sensor_id))
+                  <div class="text-yellow-600 font-semibold">Sensor Tidak Terpasang</div>
+                @else
+                  @if ($item->status === 'ON')
+                    <div class="text-green-600 font-semibold">Mesin Aktif</div>
+                  @else
+                    <div class="text-red-600 font-semibold">Mesin Tidak Aktif</div>
+                  @endif
+
+                  @if ($item->lastTime)
+                    <div class="text-gray-500 text-sm mt-1">
+                      Terakhir data diterima:
+                      {{ \Carbon\Carbon::parse($item->lastTime)->diffForHumans() }}
+                    </div>
+                  @endif
+                @endif
+              </td>
+
               <td class="px-4 py-2">
                 <div class="flex gap-2">
                   <a href="{{ route('admin.alsintan.show', $item->id) }}"
@@ -68,7 +93,7 @@
             </tr>
             </tr>
           @endforeach
-        </tbody>
+          </tbody>
       </table>
     </div>
     <nav>

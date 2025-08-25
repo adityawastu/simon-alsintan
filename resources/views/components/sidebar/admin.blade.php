@@ -129,8 +129,56 @@
     </ul>
   </li>
 
-  {{-- Upja Management (with collapse) --}}
+  {{-- Menu Peminjaman Alsintan --}}
   <li>
+    <button type="button"
+      class="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+      aria-controls="dropdown-peminjaman" data-collapse-toggle="dropdown-peminjaman">
+      <svg aria-hidden="true"
+        class="flex-shrink-0 w-6 h-6 text-black transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+        fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd"
+          d="M10 2a2 2 0 00-2 2v2H5a2 2 0 00-2 2v8a2 2 0 002 2h10a2 2 0 002-2V8a2 2 0 00-2-2h-3V4a2 2 0 00-2-2zM7 10a1 1 0 000 2h6a1 1 0 000-2H7z"
+          clip-rule="evenodd"></path>
+      </svg>
+      <span class="flex-1 ml-2 text-left whitespace-nowrap text-base font-normal">Peminjaman Alsintan</span>
+      <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd"
+          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+          clip-rule="evenodd"></path>
+      </svg>
+    </button>
+
+    {{-- Submenu Peminjaman Alsintan --}}
+    <ul id="dropdown-peminjaman"
+      class="{{ request()->routeIs('admin.peminjaman.alsintan.index') || request()->routeIs('admin.riwayat.peminjaman.alsintan') ? 'py-2 space-y-2' : 'hidden py-2 space-y-2' }}">
+      {{-- Data Peminjaman --}}
+      <li>
+        <a href="{{ route('admin.peminjaman.alsintan.index') }}"
+          class="flex items-center p-2 pl-11 w-full text-base rounded-lg transition duration-75 group
+          {{ request()->routeIs('admin.peminjaman.alsintan.index')
+              ? 'bg-green-500 text-white'
+              : 'text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700' }}">
+          Data Peminjaman
+        </a>
+      </li>
+
+      {{-- Riwayat Peminjaman --}}
+      <li>
+        <a href="{{ route('admin.riwayat.peminjaman.alsintan') }}"
+          class="flex items-center p-2 pl-11 w-full text-base rounded-lg transition duration-75 group
+          {{ request()->routeIs('admin.riwayat.peminjaman.alsintan')
+              ? 'bg-green-500 text-white'
+              : 'text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700' }}">
+          Riwayat Peminjaman
+        </a>
+      </li>
+    </ul>
+  </li>
+
+
+  {{-- Upja Management (with collapse) --}}
+  {{-- <li>
     <button type="button"
       class="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
       aria-controls="dropdown-upja" data-collapse-toggle="dropdown-upja">
@@ -158,5 +206,5 @@
         </a>
       </li>
     </ul>
-  </li>
+  </li> --}}
 </ul>

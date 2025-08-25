@@ -18,48 +18,38 @@ class DataAlsintanController extends Controller
   {
     // Ambil data alsintan dengan relasi kategori dan merk, pakai pagination
     $alsintansPaginated = DataAlsintan::with(['category', 'merk'])->paginate(10);
-
     // Transformasi data di dalam paginasi, tambahkan status dan waktu terakhir data sensor
     $alsintansPaginated->getCollection()->transform(function ($item) {
-      $latestSensor = \App\Models\Admin\SensorData::where('sensor_id', $item->sensor_id)
-        ->latest()
-        ->first();
-
-      $item->status = ($latestSensor && $latestSensor->created_at > now()->subMinutes(5)) ? 'ON' : 'OFF';
+      $latestSensor = \App\Models\Admin\SensorData::where('sensor_id', $item->sensor_id)->latest()->first();
+      $item->status = $latestSensor && $latestSensor->created_at > now()->subMinutes(5) ? 'ON' : 'OFF';
       $item->lastTime = $latestSensor?->created_at;
-
       return $item;
     });
-
     return view('admin.asset_management.data_alsintan.index_alsintan', [
-      'alsintans' => $alsintansPaginated
+      'alsintans' => $alsintansPaginated,
     ]);
   }
-
   public function create()
   {
     $categories = Category::all();
     $merks = Merk::all();
     $sensors = SensorData::select('*')
       ->whereIn('id', function ($query) {
-        $query->selectRaw('MAX(id)')
-          ->from('sensor_data')
-          ->groupBy('sensor_id');
-      })->get();
-
-
+        $query->selectRaw('MAX(id)')->from('sensor_data')->groupBy('sensor_id');
+      })
+      ->get();
     return view('admin.asset_management.data_alsintan.create_alsintan', compact('categories', 'merks', 'sensors'));
   }
 
   public function store(Request $request)
   {
     $validated = $request->validate([
-      'name'        => 'required|string|max:255',
-      'sensor_id'   => 'nullable|string|exists:sensor_data,sensor_id',
+      'name' => 'required|string|max:255',
+      'sensor_id' => 'nullable|string|exists:sensor_data,sensor_id',
       'category_id' => 'nullable|integer|exists:categories,id',
-      'merk_id'     => 'nullable|integer|exists:merks,id',
+      'merk_id' => 'nullable|integer|exists:merks,id',
       'description' => 'nullable|string',
-      'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+      'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
     ]);
 
     $imagePath = null;
@@ -68,12 +58,12 @@ class DataAlsintanController extends Controller
     }
 
     DataAlsintan::create([
-      'name'        => $validated['name'],
-      'sensor_id'   => $validated['sensor_id'] ?? null,
+      'name' => $validated['name'],
+      'sensor_id' => $validated['sensor_id'] ?? null,
       'category_id' => $validated['category_id'] ?? null,
-      'merk_id'     => $validated['merk_id'] ?? null,
+      'merk_id' => $validated['merk_id'] ?? null,
       'description' => $validated['description'] ?? null,
-      'image'       => $imagePath,
+      'image' => $imagePath,
     ]);
 
     return redirect()->route('admin.data.alsintan')->with('success', 'Data berhasil ditambahkan!');
@@ -84,10 +74,9 @@ class DataAlsintanController extends Controller
     $alsintan = DataAlsintan::with(['category', 'merk', 'serviceHistories'])->findOrFail($id);
     $sensors = SensorData::select('*')
       ->whereIn('id', function ($query) {
-        $query->selectRaw('MAX(id)')
-          ->from('sensor_data')
-          ->groupBy('sensor_id');
-      })->get();
+        $query->selectRaw('MAX(id)')->from('sensor_data')->groupBy('sensor_id');
+      })
+      ->get();
     // Ambil data sensor terbaru berdasarkan sensor_id
     $sensor_id = $alsintan->sensor_id;
 
@@ -119,23 +108,16 @@ class DataAlsintanController extends Controller
     $busVoltages = $sensorData->pluck('bus');
     $loadVoltages = $sensorData->pluck('load');
 
-    return view('admin.asset_management.data_alsintan.show_alsintan', compact(
-      'alsintan',
-      'sensors',
-      'latestData',
-      'gpsData',
-      'sensorData',
-      'labels',
-      'busVoltages',
-      'loadVoltages'
-    ));
+    return view(
+      'admin.asset_management.data_alsintan.show_alsintan',
+      compact('alsintan', 'sensors', 'latestData', 'gpsData', 'sensorData', 'labels', 'busVoltages', 'loadVoltages'),
+    );
   }
 
   public function destroy($id)
   {
     $alsintan = DataAlsintan::findOrFail($id);
     $alsintan->delete();
-
     return redirect()->route('admin.data.alsintan')->with('success', 'Data berhasil dihapus.');
   }
 
@@ -147,8 +129,10 @@ class DataAlsintanController extends Controller
 
     $sensors = SensorData::select('sensor_id')->distinct()->get();
 
-
-    return view('admin.asset_management.data_alsintan.edit_alsintan', compact('alsintan', 'categories', 'merks', 'sensors'));
+    return view(
+      'admin.asset_management.data_alsintan.edit_alsintan',
+      compact('alsintan', 'categories', 'merks', 'sensors'),
+    );
   }
 
   public function update(Request $request, $id)
@@ -184,6 +168,26 @@ class DataAlsintanController extends Controller
     }
     $alsintan->save();
 
-    return redirect()->route('admin.alsintan.show', $alsintan->id)->with('success', 'Data alsintan berhasil diperbarui.');
+    return redirect()
+      ->route('admin.alsintan.show', $alsintan->id)
+      ->with('success', 'Data alsintan berhasil diperbarui.');
+  }
+
+  public function attachSensor(Request $request, DataAlsintan $alsintan)
+  {
+    $data = $request->validate([
+      'sensor_id' => ['required', 'string', 'exists:sensor_data,sensor_id'],
+    ]);
+
+    $alsintan->update(['sensor_id' => $data['sensor_id']]);
+
+    return back()->with('success', "Sensor {$data['sensor_id']} berhasil ditautkan.");
+  }
+
+  public function detachSensor(DataAlsintan $alsintan)
+  {
+    $alsintan->update(['sensor_id' => null]);
+
+    return back()->with('success', 'Sensor berhasil dilepas dari alsintan.');
   }
 }

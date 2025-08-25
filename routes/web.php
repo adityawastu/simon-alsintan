@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\DataAlsintanController;
 use App\Http\Controllers\Admin\DataUpjaController;
 use App\Http\Controllers\Admin\ServiceHistoryController;
 use App\Http\Controllers\Admin\MonitoringAlsintanController;
+use App\Http\Controllers\Admin\PeminjamanAlsintanController;
 
 //auth controller
 use App\Http\Controllers\Auth\LoginController;
@@ -55,6 +56,13 @@ Route::middleware(['auth'])->group(function () {
       //monitoring aktivitas
       Route::get('/monitoring-alsintan', [MonitoringAlsintanController::class, 'index'])->name('monitoring.aktivitas');
 
+      // tambah sensor
+      Route::post('/admin/alsintan/{alsintan}/sensor', [DataAlsintanController::class, 'attachSensor'])->name(
+        'alsintan.sensor.attach',
+      );
+      Route::delete('/admin/alsintan/{alsintan}/sensor', [DataAlsintanController::class, 'detachSensor'])->name(
+        'alsintan.sensor.detach',
+      );
       // Data_alsintan
       Route::get('/data-alsintan', [DataAlsintanController::class, 'index'])->name('data.alsintan');
       Route::get('/tambah-alsintan', [DataAlsintanController::class, 'create'])->name('create.alsintan');
@@ -81,6 +89,14 @@ Route::middleware(['auth'])->group(function () {
       // Route::get('/create-user', [UserController::class, 'create'])->name('user.create');
       // Route::post('/user', [UserController::class, 'store'])->name('user.store');
       // Route::delete('/destroy-user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+
+      //peminjaman alsitan
+      Route::get('/peminjaman-alsintan', [PeminjamanAlsintanController::class, 'index'])->name(
+        'peminjaman.alsintan.index',
+      );
+      Route::get('/riwayat-peminjaman-alsintan', [PeminjamanAlsintanController::class, 'riwayat'])->name(
+        'riwayat.peminjaman.alsintan',
+      );
     });
 
   //upja login
@@ -92,7 +108,6 @@ Route::middleware(['auth'])->group(function () {
     });
 
   //famrmer login
-
   Route::prefix('farmer')
     ->name('farmer.')
     ->middleware('role:farmer')
