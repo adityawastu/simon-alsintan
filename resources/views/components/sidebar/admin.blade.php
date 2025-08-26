@@ -96,7 +96,7 @@
           d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
           clip-rule="evenodd"></path>
       </svg>
-      <span class="flex-1 ml-2 text-left whitespace-nowrap text-base font-normal">Asset Management</span>
+      <span class="flex-1 ml-2 text-left whitespace-nowrap text-base font-normal">Manajemen Asset</span>
       <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
         <path fill-rule="evenodd"
           d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
@@ -151,12 +151,12 @@
 
     {{-- Submenu Peminjaman Alsintan --}}
     <ul id="dropdown-peminjaman"
-      class="{{ request()->routeIs('admin.peminjaman.alsintan.index') || request()->routeIs('admin.riwayat.peminjaman.alsintan') ? 'py-2 space-y-2' : 'hidden py-2 space-y-2' }}">
+      class="{{ request()->routeIs('admin.peminjaman.index') || request()->routeIs('admin.peminjaman.riwayat') ? 'py-2 space-y-2' : 'hidden py-2 space-y-2' }}">
       {{-- Data Peminjaman --}}
       <li>
-        <a href="{{ route('admin.peminjaman.alsintan.index') }}"
+        <a href="{{ route('admin.peminjaman.index') }}"
           class="flex items-center p-2 pl-11 w-full text-base rounded-lg transition duration-75 group
-          {{ request()->routeIs('admin.peminjaman.alsintan.index')
+          {{ request()->routeIs('admin.peminjaman.index')
               ? 'bg-green-500 text-white'
               : 'text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700' }}">
           Data Peminjaman
@@ -165,9 +165,9 @@
 
       {{-- Riwayat Peminjaman --}}
       <li>
-        <a href="{{ route('admin.riwayat.peminjaman.alsintan') }}"
+        <a href="{{ route('admin.peminjaman.riwayat') }}"
           class="flex items-center p-2 pl-11 w-full text-base rounded-lg transition duration-75 group
-          {{ request()->routeIs('admin.riwayat.peminjaman.alsintan')
+          {{ request()->routeIs('admin.peminjaman.riwayat')
               ? 'bg-green-500 text-white'
               : 'text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700' }}">
           Riwayat Peminjaman

@@ -91,11 +91,18 @@ Route::middleware(['auth'])->group(function () {
       // Route::delete('/destroy-user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
       //peminjaman alsitan
-      Route::get('/peminjaman-alsintan', [PeminjamanAlsintanController::class, 'index'])->name(
-        'peminjaman.alsintan.index',
-      );
-      Route::get('/riwayat-peminjaman-alsintan', [PeminjamanAlsintanController::class, 'riwayat'])->name(
-        'riwayat.peminjaman.alsintan',
+      // Route::get('/peminjaman-alsintan', [PeminjamanAlsintanController::class, 'index'])->name(
+      //   'peminjaman.alsintan.index',
+      // );
+      // Route::get('/riwayat-peminjaman-alsintan', [PeminjamanAlsintanController::class, 'riwayat'])->name(
+      //   'riwayat.peminjaman.alsintan',
+      // );
+
+      Route::get('/peminjaman', [PeminjamanAlsintanController::class, 'index'])->name('peminjaman.index');
+      Route::get('/peminjaman/riwayat', [PeminjamanAlsintanController::class, 'riwayat'])->name('peminjaman.riwayat');
+      Route::post('/peminjaman/store', [PeminjamanAlsintanController::class, 'store'])->name('peminjaman.store');
+      Route::put('/peminjaman/{id}/status', [PeminjamanAlsintanController::class, 'updateStatus'])->name(
+        'peminjaman.updateStatus',
       );
     });
 
