@@ -139,7 +139,6 @@ class DataAlsintanController extends Controller
   {
     $request->validate([
       'name' => 'required|string|max:255',
-      'sensor_id' => 'required|string|exists:sensor_data,sensor_id',
       'category_id' => 'nullable|exists:categories,id',
       'merk_id' => 'nullable|exists:merks,id',
 

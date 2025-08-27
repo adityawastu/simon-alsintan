@@ -3,20 +3,42 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Models\Admin\Category;
+use App\Models\Admin\DataAlsintan;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\admin\PeminjamanAlsintan;
 
 class PeminjamanAlsintanController extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
-    $peminjaman = PeminjamanAlsintan::with(['alsintan', 'user'])
-      ->orderByRaw("FIELD(status, 'pending', 'approved', 'borrowed', 'returned', 'rejected') ASC")
-      ->latest()
-      ->get();
+    $status = $request->get('status');
+    $category_id = $request->get('category_id');
 
-    return view('admin.peminjaman_alsintan.index', compact('peminjaman'));
+    // Ambil semua kategori untuk dropdown filter
+    $categories = Category::orderBy('name', 'asc')->get();
+
+    // Query peminjaman dengan relasi alsintan, kategori, dan user
+    $query = PeminjamanAlsintan::with(['alsintan.category', 'user'])
+      ->orderByRaw("FIELD(status, 'pending', 'approved', 'borrowed', 'returned', 'rejected') ASC")
+      ->latest();
+
+    // Filter berdasarkan status jika dipilih
+    if (!empty($status)) {
+      $query->where('status', $status);
+    }
+
+    // Filter berdasarkan kategori alsintan jika dipilih
+    if (!empty($category_id)) {
+      $query->whereHas('alsintan', function ($q) use ($category_id) {
+        $q->where('category_id', $category_id);
+      });
+    }
+
+    $peminjaman = $query->get();
+
+    return view('admin.peminjaman_alsintan.index', compact('peminjaman', 'categories', 'status', 'category_id'));
   }
 
   public function riwayat()
