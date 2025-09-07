@@ -17,7 +17,6 @@ return new class extends Migration {
       $table->string('kabupaten')->nullable();
       $table->string('provinsi')->nullable();
       $table->decimal('luas_lahan', 10, 2)->nullable();
-      $table->string('jenis_tanaman')->nullable();
       $table->string('kontak')->nullable();
       $table->timestamps();
     });

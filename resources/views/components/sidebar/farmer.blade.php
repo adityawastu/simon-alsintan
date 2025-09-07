@@ -25,9 +25,16 @@
       <div
         class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
         id="dropdown">
-        <ul class="py-1 text-gray-700 dark:text-gray-300"></ul>
         <ul class="py-1 text-gray-700 dark:text-gray-300">
-          <li>
+          {{-- menu profile user --}}
+          <li class="p-2">
+            <a href="{{ route('admin.profile') }}"
+              class="block w-full text-left py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+              Profile
+            </a>
+          </li>
+          {{-- log out user farmer --}}
+          <li class="p-2">
             <form method="POST" action="{{ route('logout') }}">
               @csrf
               <button type="submit"

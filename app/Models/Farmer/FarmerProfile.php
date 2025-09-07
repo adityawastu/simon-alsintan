@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models\Farmer;
-
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,6 +10,7 @@ class FarmerProfile extends Model
   use HasFactory;
 
   protected $fillable = [
+    'id',
     'user_id',
     'no_ktp',
     'alamat',
@@ -19,17 +19,11 @@ class FarmerProfile extends Model
     'kabupaten',
     'provinsi',
     'luas_lahan',
-    'jenis_tanaman',
     'kontak',
   ];
 
   public function user()
   {
     return $this->belongsTo(User::class);
-  }
-
-  public function farmerProfile()
-  {
-    return $this->hasOne(FarmerProfile::class);
   }
 }

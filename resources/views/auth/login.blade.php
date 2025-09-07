@@ -27,12 +27,12 @@
   <div class="flex min-h-screen">
 
     <!-- Kiri: Ilustrasi / Banner -->
-    <div class="hidden lg:flex lg:w-2/3 bg-cover bg-center relative" style="background-image: url('/images/balai.png');">
+    <div class="hidden lg:flex lg:w-7/9 bg-cover bg-center relative" style="background-image: url('/images/balai.png');">
 
     </div>
 
     <!-- Kanan: Form Login -->
-    <div class="flex items-center justify-center w-full lg:w-1/3 px-8 py-10 bg-white shadow-lg">
+    <div class="flex items-center justify-center w-full lg:w-2/9 px-8 py-10 bg-white shadow-lg">
       <div class="w-full max-w-md">
 
         <!-- Logo & Judul -->

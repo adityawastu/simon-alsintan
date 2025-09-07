@@ -27,7 +27,7 @@ class User extends Authenticatable
   }
   public function farmerProfile()
   {
-    return $this->hasOne(FarmerProfile::class, 'user_id');
+    return $this->hasOne(FarmerProfile::class); //ditulis secara eksplisit agar gampang diingat
   }
 
   public function isAdmin(): bool

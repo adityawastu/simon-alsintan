@@ -40,7 +40,7 @@
         </thead>
         <tbody>
           @forelse ($riwayat as $item)
-            <tr class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition">
               <!-- No -->
               <td class="px-5 py-3 font-medium text-gray-900 dark:text-gray-100">
                 {{ $loop->iteration }}

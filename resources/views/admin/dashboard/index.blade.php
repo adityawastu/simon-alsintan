@@ -3,30 +3,38 @@
   <div class="p-6 space-y-8">
 
     <!-- Judul Halaman -->
-    <h1 class="text-3xl font-bold text-green-600 tracking-wide">
-      Dashboard Aplikasi
-    </h1>
+    {{-- <h1 class="text-3xl font-bold text-green-600 tracking-wide">
+      Dashboard Aplikasi Simon Alsintan
+    </h1> --}}
 
-    <!-- Kartu Ringkasan -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <!-- Total Alsintan -->
-      <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-600 hover:shadow-lg transition duration-300">
-        <p class="text-sm text-gray-500 mb-1">Total Alat & Mesin Pertanian</p>
-        <p class="text-3xl font-bold text-gray-800">{{ $totalAlsintan }}</p>
-      </div>
+    <!-- Kartu Ringkasan  Total Alat-->
+    <div>
+      <h1 class="text-xl font-bold text-green-600 tracking-wide mb-4">
+        Ringkasan Alat dan Mesin pertanian
+      </h1>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Total Alsintan -->
+        <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-600 hover:shadow-lg transition duration-300">
+          <p class="text-sm text-gray-500 mb-1">Total Alat & Mesin Pertanian</p>
+          <p class="text-3xl font-bold text-gray-800">{{ $totalAlsintan }}</p>
+        </div>
 
-      <!-- Mesin Berjalan -->
-      <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-600 hover:shadow-lg transition duration-300">
-        <p class="text-sm text-gray-500 mb-1">Mesin yang Sedang Berjalan</p>
-        <p class="text-3xl font-bold text-gray-800">{{ $runningAlsintan }}</p>
-      </div>
+        <!-- Mesin Berjalan -->
+        <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-600 hover:shadow-lg transition duration-300">
+          <p class="text-sm text-gray-500 mb-1">Mesin yang Sedang Berjalan</p>
+          <p class="text-3xl font-bold text-gray-800">{{ $runningAlsintan }}</p>
+        </div>
 
-      <!-- Total UPJA -->
-      <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-600 hover:shadow-lg transition duration-300">
-        <p class="text-sm text-gray-500 mb-1">Total UPJA</p>
-        <p class="text-3xl font-bold text-gray-800">{{ $runningAlsintan }}</p>
+        <!-- Total UPJA -->
+        {{-- <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-600 hover:shadow-lg transition duration-300">
+          <p class="text-sm text-gray-500 mb-1">Total UPJA</p>
+          <p class="text-3xl font-bold text-gray-800">{{ $runningAlsintan }}</p>
+        </div> --}}
       </div>
     </div>
+
+
+
 
     <!-- Grafik -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -44,6 +52,32 @@
           Jumlah UPJA Provinsi Jawa Barat
         </h2>
         <canvas id="alsintanChart2" width="400" height="200"></canvas>
+      </div>
+    </div>
+
+    <!-- Kartu Ringkasan  Total Peminjaman-->
+    <div>
+      <h1 class="text-xl font-bold text-green-600 tracking-wide mb-4">
+        Ringkasan Peminjaman
+      </h1>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Total Alsintan -->
+        <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-600 hover:shadow-lg transition duration-300">
+          <p class="text-sm text-gray-500 mb-1">Pengajuan Baru</p>
+          <p class="text-3xl font-bold text-gray-800">{{ $totalAlsintan }}</p>
+        </div>
+
+        <!-- Mesin Berjalan -->
+        <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-600 hover:shadow-lg transition duration-300">
+          <p class="text-sm text-gray-500 mb-1">Sedang Dipinjam</p>
+          <p class="text-3xl font-bold text-gray-800">{{ $runningAlsintan }}</p>
+        </div>
+
+        <!-- Total UPJA -->
+        <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-600 hover:shadow-lg transition duration-300">
+          <p class="text-sm text-gray-500 mb-1">Selesai</p>
+          <p class="text-3xl font-bold text-gray-800">{{ $runningAlsintan }}</p>
+        </div>
       </div>
     </div>
   </div>
