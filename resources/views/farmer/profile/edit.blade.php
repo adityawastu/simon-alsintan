@@ -103,7 +103,7 @@
           <button type="submit"
             class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-green-600 rounded-lg
                    hover:bg-green-700 focus:ring-4 focus:ring-green-300 transition">
-            Simpan Perubahan
+            Simpan Perubahan tombol
           </button>
         </div>
       </form>
