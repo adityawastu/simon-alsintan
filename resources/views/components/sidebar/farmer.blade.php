@@ -28,7 +28,7 @@
         <ul class="py-1 text-gray-700 dark:text-gray-300">
           {{-- menu profile user --}}
           <li class="p-2">
-            <a href="{{ route('admin.profile') }}"
+            <a href="{{ route('farmer.profile.show') }}"
               class="block w-full text-left py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
               Profile
             </a>

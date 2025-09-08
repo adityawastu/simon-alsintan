@@ -27,6 +27,7 @@ use App\Http\Controllers\Farmer\DataAlsintanController as FarmerDataAlsintanCont
 use App\Http\Controllers\Farmer\AjukanSewaController;
 use App\Http\Controllers\Farmer\StatusPengajuanController;
 use App\Http\Controllers\Farmer\RiwayatPenyewaanController;
+use App\Http\Controllers\Farmer\FarmerProfileController;
 
 //auth
 Route::get('/', function () {
@@ -122,13 +123,17 @@ Route::middleware(['auth'])->group(function () {
       Route::get('/beranda', [FarmerBerandaController::class, 'index'])->name('beranda');
       // Route::get('/ajukan-sewa-alsintan', [SewaAlsintanController::class, 'index'])->name('sewaalsintan.index');
 
-      //data alsintan
+      //penyewaan alsintan
       Route::get('/data-alsintan', [FarmerDataAlsintanController::class, 'index'])->name('dataalsintan.index');
-      //ajukan sewa
       Route::get('/ajukan-sewa', [AjukanSewaController::class, 'index'])->name('ajukansewa.index');
-      //status pengajuan
       Route::get('/status-pengajuan', [StatusPengajuanController::class, 'index'])->name('statuspengajuan.index');
-      //riwayat penyewaan
       Route::get('/riwayat-penyewaan', [RiwayatPenyewaanController::class, 'index'])->name('riwayatpenyewaan.index');
+
+      //route untuk profil petani
+      Route::get('/farmer/profile', [FarmerProfileController::class, 'show'])->name('profile.show');
+      Route::get('/farmer/profile/create', [FarmerProfileController::class, 'create'])->name('profile.create');
+      Route::post('/farmer/profile', [FarmerProfileController::class, 'store'])->name('profile.store');
+      Route::get('/farmer/profile/edit', [FarmerProfileController::class, 'edit'])->name('profile.edit');
+      Route::put('/farmer/profile', [FarmerProfileController::class, 'update'])->name('profile.update');
     });
 });

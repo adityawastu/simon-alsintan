@@ -10,7 +10,6 @@ class FarmerProfile extends Model
   use HasFactory;
 
   protected $fillable = [
-    'id',
     'user_id',
     'no_ktp',
     'alamat',

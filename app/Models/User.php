@@ -25,11 +25,6 @@ class User extends Authenticatable
   {
     return $this->hasOne(UpjaProfile::class);
   }
-  public function farmerProfile()
-  {
-    return $this->hasOne(FarmerProfile::class); //ditulis secara eksplisit agar gampang diingat
-  }
-
   public function isAdmin(): bool
   {
     return $this->role === 'admin';
@@ -41,5 +36,10 @@ class User extends Authenticatable
   public function isFarmer(): bool
   {
     return $this->role === 'farmer';
+  }
+
+  public function farmerProfile()
+  {
+    return $this->hasOne(FarmerProfile::class);
   }
 }
