@@ -24,7 +24,6 @@
       <form action="{{ route('farmer.profile.update') }}" method="POST">
         @csrf
         @method('PUT')
-
         <div class="gap-6 mb-4 sm:grid-cols-2">
           {{-- No. KTP --}}
           <div class="mb-4 flex items-center">
@@ -34,7 +33,6 @@
                      focus:ring-green-500 focus:border-green-500 p-2.5"
               required>
           </div>
-
           {{-- Kontak --}}
           <div class="mb-4 flex items-center">
             <label for="kontak" class="w-40 text-sm font-semibold text-gray-800">Kontak</label>
@@ -100,10 +98,9 @@
 
         {{-- Tombol Simpan --}}
         <div class="flex justify-end mt-4">
-          <button type="submit"
-            class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-green-600 rounded-lg
-                   hover:bg-green-700 focus:ring-4 focus:ring-green-300 transition">
-            Simpan Perubahan tombol
+          <button
+            type="submit"class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-300 transition">
+            Simpan Perubahan
           </button>
         </div>
       </form>
